@@ -25,11 +25,10 @@ while true; do
         echo -e "1. Pre-validation task.\n"
         echo -e "2. User admin tasks.\n"
         echo -e "3. Run Ad-hoc command.\n"
-        echo -e "4. Server Patching.\n"
 	echo "----------------------------"
 	echo -e $BICyan"\t\t[perf]"$NORMAL
 	echo ""
-	echo -e "5. Performance Health Checks.\n"
+	echo -e "4. Performance Health Checks.\n"
 	echo "----------------------------"
 	echo -e $BICyan"\t   <=Gen Options=>"$NORMAL
 	echo ""
@@ -136,27 +135,7 @@ while true; do
                         fi;;
 
 
-                                                        4)
-                                                                clear
-                                                if [ $target != "random" ]; then
-                                                        echo ""
-                                        echo -e $BIRed"Please select the \"random\" Target Servers Group first, use: Option 22....Press Enter to continue !!!\n"$NORMAL
-                                                        read dummy
-                                                else
-                                                        echo -e "\n"
-                         read -p "Have you updated Target section in hosts file AND taken server configuration output from \"Pre-validation section\" ? y/n: " input
-                                                        if [[ "$input" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-                                                                cd $pwd
-                                                                cat patching/patch.yaml|sed "s/xyz/$target/g" > patching/patch3.yaml
-                                                                ansible-playbook patching/patch3.yaml -K
-                                                                sleep 5
-                                                        else
-     echo -e $BIRed"Please update the $target Target Servers Group (in $host file) and take the configuration backup from Pre-validation section first...\n"$NORMAL
-                                                        fi
-                                                fi;;
-
-
-		5)
+		4)
 			clear
                         if [ $target != "perf" ]; then
 				echo ""
